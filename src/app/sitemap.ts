@@ -1,54 +1,62 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { services } from '@/data/services';
+import { areas } from '@/data/areas';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const baseUrl = 'https://www.dentavip.com';
+
+  const serviceUrls = services.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  const areaUrls = areas.map((area) => ({
+    url: `${baseUrl}/areas/${area.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  const staticUrls = [
     {
-      url: 'https://www.dentavip.com',
+      url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 1.0,
     },
     {
-      url: 'https://www.dentavip.com/services/implants-dentaires',
+      url: `${baseUrl}/services`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/areas`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: 'https://www.dentavip.com/services/dentisterie-generale',
+      url: `${baseUrl}/transformation`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: 'https://www.dentavip.com/services/dentisterie-esthetique',
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-    {
-      url: 'https://www.dentavip.com/services/orthodontie',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://www.dentavip.com/services/soins-pediatriques',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://www.dentavip.com/services/urgences-dentaires',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://www.dentavip.com/services/chirurgie-orale',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ]
+  ];
+
+  return [...staticUrls, ...serviceUrls, ...areaUrls];
 }

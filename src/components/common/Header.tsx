@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Menu, X, Phone } from 'lucide-react';
@@ -16,16 +18,16 @@ const Header = () => {
             <img
               src="/logo.png"
               alt="Cabinet dentaire Dr Ferjani Amir"
-              height="44"
-              style={{ display: 'block' }}
+              style={{ height: '44px', width: 'auto', display: 'block' }}
             />
           </Link>
         </div>
         
         <nav className={`${styles.nav} ${isMenuOpen ? styles.active : ''}`}>
-          <Link href="/#services" onClick={() => setIsMenuOpen(false)}>Services</Link>
-          <Link href="/#about" onClick={() => setIsMenuOpen(false)}>À propos</Link>
-          <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+          <Link href="/services" onClick={() => setIsMenuOpen(false)}>Services</Link>
+          <Link href="/about" onClick={() => setIsMenuOpen(false)}>À propos</Link>
+          <Link href="/transformation" onClick={() => setIsMenuOpen(false)}>Transformation</Link>
+          <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           <div className={styles.mobilePhone}>
             <a href="tel:+21626790175">
               <Phone size={18} />

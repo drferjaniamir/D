@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import { Send, Instagram, Facebook, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { Send, Instagram, Facebook, Twitter, MapPin, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -12,8 +13,7 @@ const Footer = () => {
               <img
                 src="/logo.png"
                 alt="Cabinet dentaire Dr Ferjani Amir"
-                height="36"
-                style={{ display: 'block' }}
+                style={{ height: '36px', width: 'auto', display: 'block' }}
               />
             </div>
             <p className={styles.brandDesc}>
@@ -29,17 +29,17 @@ const Footer = () => {
           <div className={styles.links}>
             <h3>Expertise</h3>
             <ul>
-              <li><a href="#">Esthétique</a></li>
-              <li><a href="#">Générale</a></li>
-              <li><a href="#">Chirurgicale</a></li>
-              <li><a href="#">Pédiatrique</a></li>
+              <li><Link href="/services/dentisterie-esthetique">Esthétique</Link></li>
+              <li><Link href="/services/dentisterie-generale">Générale</Link></li>
+              <li><Link href="/services/chirurgie-orale">Chirurgicale</Link></li>
+              <li><Link href="/services/soins-pediatriques">Pédiatrique</Link></li>
             </ul>
           </div>
 
           <div className={styles.links}>
             <h3>Entreprise</h3>
             <ul>
-              <li><a href="#">À Propos</a></li>
+              <li><Link href="/#about">À Propos</Link></li>
               <li><a href="#">Journal</a></li>
               <li><a href="#">Carrières</a></li>
             </ul>
@@ -59,12 +59,12 @@ const Footer = () => {
 
         <div className={styles.bottom}>
           <div className={styles.info}>
-            <span><MapPin size={16} /> 14 hamza ibn abdelmotaleb, Cebalat Ben Ammar 2083</span>
+            <span>Cabinet dentaire Dr Ferjani Amir</span>
+            <span><MapPin size={16} /> 14 hamza ibn abdelmotaleb, Ariana Essoghra 2083</span>
             <span><Phone size={16} /> +216 26 790 175</span>
-            <span><Mail size={16} /> care@dentiste.com</span>
           </div>
           <div className={styles.copyright}>
-            © {new Date().getFullYear()} Dentiste. Tous droits réservés.
+            © {new Date().getFullYear()} Cabinet dentaire Dr Ferjani Amir. Tous droits réservés.
           </div>
         </div>
       </div>

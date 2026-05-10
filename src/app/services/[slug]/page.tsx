@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import styles from './ServiceDetail.module.css';
 import { Metadata } from 'next';
+import Footer from "@/components/common/Footer";
 
 const seoMeta: Record<string, { title: string; description: string }> = {
   'implants-dentaires': {
@@ -88,71 +89,74 @@ const ServicePage = async ({ params }: Props) => {
   }
 
   return (
-    <main className={styles.main}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Dentist",
-            "name": "Cabinet dentaire Dr Ferjani Amir",
-            "image": "https://www.dentavip.com/logo.png",
-            "@id": "https://www.dentavip.com",
-            "url": `https://www.dentavip.com/services/${slug}`,
-            "telephone": "+21626790175",
-            "priceRange": "$$",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "14 hamza ibn abdelmotaleb",
-              "addressLocality": "Ariana Essoghra",
-              "postalCode": "2083",
-              "addressCountry": "TN"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 36.89935,
-              "longitude": 10.18378
-            }
-          })
-        }}
-      />
-      <div className={styles.container}>
-        <Link href="/#services" className={styles.backLink}>
-          <ArrowLeft size={20} />
-          <span>Retour aux services</span>
-        </Link>
-
-        <header className={styles.header}>
-          <h1 className={styles.title}>{service.title} à Ariana</h1>
-          <p className={styles.description}>{service.description}</p>
-        </header>
-
-        <section className={styles.subServicesSection}>
-          <h2 className={styles.subTitle}>Nos spécialités en {service.title}</h2>
-          <div className={styles.grid}>
-            {service.subServices.map((sub, index) => (
-              <div key={index} className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <CheckCircle2 className={styles.checkIcon} size={24} />
-                  <h3 className={styles.cardTitle}>{sub.title}</h3>
+    <>
+      <main className={styles.main}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Dentist",
+              "name": "Cabinet dentaire Dr Ferjani Amir",
+              "image": "https://www.dentavip.com/logo.png",
+              "@id": "https://www.dentavip.com",
+              "url": `https://www.dentavip.com/services/${slug}`,
+              "telephone": "+21626790175",
+              "priceRange": "$$",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "14 hamza ibn abdelmotaleb",
+                "addressLocality": "Ariana Essoghra",
+                "postalCode": "2083",
+                "addressCountry": "TN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 36.89935,
+                "longitude": 10.18378
+              }
+            })
+          }}
+        />
+        <div className={styles.container}>
+          <Link href="/services" className={styles.backLink}>
+            <ArrowLeft size={20} />
+            <span>Retour aux services</span>
+          </Link>
+  
+          <header className={styles.header}>
+            <h1 className={styles.title}>{service.title} à Ariana</h1>
+            <p className={styles.description}>{service.description}</p>
+          </header>
+  
+          <section className={styles.subServicesSection}>
+            <h2 className={styles.subTitle}>Nos spécialités en {service.title}</h2>
+            <div className={styles.grid}>
+              {service.subServices.map((sub, index) => (
+                <div key={index} className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <CheckCircle2 className={styles.checkIcon} size={24} />
+                    <h3 className={styles.cardTitle}>{sub.title}</h3>
+                  </div>
+                  <p className={styles.cardDescription}>{sub.description}</p>
                 </div>
-                <p className={styles.cardDescription}>{sub.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.cta}>
-          <div className={styles.ctaContent}>
-            <h2>Besoin d'un rendez-vous ?</h2>
-            <p>Nos experts sont là pour vous accompagner dans votre parcours de soin.</p>
-            <Link href="/#contact" className={styles.ctaButton}>
-              Prendre rendez-vous
-            </Link>
-          </div>
-        </section>
-      </div>
-    </main>
+              ))}
+            </div>
+          </section>
+  
+          <section className={styles.cta}>
+            <div className={styles.ctaContent}>
+              <h2>Besoin d'un rendez-vous ?</h2>
+              <p>Nos experts sont là pour vous accompagner dans votre parcours de soin.</p>
+              <Link href="/contact" className={styles.ctaButton}>
+                Prendre rendez-vous
+              </Link>
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
 

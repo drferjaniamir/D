@@ -3,6 +3,8 @@ import styles from './Hero.module.css';
 import { motion } from 'framer-motion';
 import { Calendar, Shield } from 'lucide-react';
 
+import Link from 'next/link';
+
 const Hero = () => {
   return (
     <section className={styles.hero}>
@@ -13,9 +15,9 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className={styles.tagline}>Advanced Digital Dentistry</span>
+            <span className={styles.tagline}>Cabinet Dentaire Dr Ferjani Amir</span>
             <h1 className={styles.title}>
-              Implants dentaires <br />
+              Dentiste <br />
               à <span className={styles.highlight}>Ariana</span>
             </h1>
             <p className={styles.description}>
@@ -23,7 +25,7 @@ const Hero = () => {
             </p>
             <div className={styles.actions}>
               <button className={styles.btnSecondary} onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>Nos Services</button>
-              <button className={styles.btnPrimary}>Prendre Rendez-vous</button>
+              <Link href="/contact" className={styles.btnPrimary}>Prendre Rendez-vous</Link>
             </div>
             
             <div className={styles.stats}>

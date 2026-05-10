@@ -3,6 +3,8 @@ import styles from './CTA.module.css';
 import { motion } from 'framer-motion';
 import { Calendar, Phone } from 'lucide-react';
 
+import Link from 'next/link';
+
 const CTA = () => {
   return (
     <section className={styles.section}>
@@ -19,10 +21,10 @@ const CTA = () => {
               Rejoignez plus de 15 000 patients satisfaits et découvrez l'avenir des soins dentaires. Prenez votre premier rendez-vous et bénéficiez de soins personnalisés dès aujourd'hui.
             </p>
             <div className={styles.actions}>
-              <button className={styles.btnPrimary}>
+              <Link href="/contact" className={styles.btnPrimary}>
                 <Calendar size={18} />
                 Réserver Maintenant
-              </button>
+              </Link>
               <button className={styles.btnSecondary}>
                 <Phone size={18} />
                 Nous Appeler
