@@ -19,6 +19,9 @@ import {
 export const metadata: Metadata = {
   title: "Nos Services Dentaires à Ariana | Cabinet dentaire Dr Ferjani Amir",
   description: "Découvrez tous les services dentaires proposés par le Cabinet dentaire Dr Ferjani Amir à Ariana : implants, orthodontie, blanchiment, urgences et plus.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

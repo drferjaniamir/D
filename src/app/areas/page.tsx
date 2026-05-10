@@ -10,6 +10,9 @@ import { MapPin, ArrowLeft } from 'lucide-react';
 export const metadata: Metadata = {
   title: "Zones Desservies à Ariana | Cabinet dentaire Dr Ferjani Amir",
   description: "Le Cabinet dentaire Dr Ferjani Amir dessert Ariana Essoghra et Ariana Ville.",
+  alternates: {
+    canonical: "/areas",
+  },
 };
 
 export default function AreasPage() {

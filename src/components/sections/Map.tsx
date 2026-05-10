@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import styles from './Map.module.css';
 import { motion } from 'framer-motion';

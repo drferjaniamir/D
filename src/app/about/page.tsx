@@ -9,6 +9,9 @@ import { ArrowLeft } from 'lucide-react';
 export const metadata: Metadata = {
   title: "À Propos | Cabinet dentaire Dr Ferjani Amir",
   description: "Découvrez l'engagement et l'expertise du Dr Ferjani Amir au service de votre sourire à Ariana.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

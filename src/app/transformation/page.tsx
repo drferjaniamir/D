@@ -9,6 +9,9 @@ import { ArrowLeft, Sparkles } from 'lucide-react';
 export const metadata: Metadata = {
   title: "Transformation & Galerie | Cabinet dentaire Dr Ferjani Amir",
   description: "Découvrez les transformations de sourires réalisées par le Dr Ferjani Amir. Galerie avant-après.",
+  alternates: {
+    canonical: "/transformation",
+  },
 };
 
 export default function TransformationPage() {

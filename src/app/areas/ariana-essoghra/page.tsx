@@ -19,6 +19,9 @@ import { services } from '@/data/services';
 export const metadata: Metadata = {
   title: "Dentiste à Ariana Essoghra | Cabinet dentaire Dr Ferjani Amir",
   description: "Vous cherchez un dentiste à Ariana Essoghra ? Cabinet dentaire Dr Ferjani Amir.",
+  alternates: {
+    canonical: "/areas/ariana-essoghra",
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

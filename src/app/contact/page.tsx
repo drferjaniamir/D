@@ -15,7 +15,10 @@ import {
 
 export const metadata: Metadata = {
   title: "Contact & Rendez-vous | Cabinet dentaire Dr Ferjani Amir à Ariana",
-  description: "Prenez rendez-vous rapidement avec le Dr Ferjani Amir via WhatsApp ou téléphone. Situé à Ariana Essoghra.",
+  description: "Prenez rendez-vous rapidement with le Dr Ferjani Amir via WhatsApp ou téléphone. Situé à Ariana Essoghra.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {
