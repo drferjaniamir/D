@@ -55,7 +55,7 @@ export default function RootLayout({
               "@type": "Dentist",
               "name": "Cabinet dentaire Dr Ferjani Amir",
               "image": "https://www.dentavip.com/logo.webp",
-              "@id": "https://www.dentavip.com",
+              "@id": "https://www.dentavip.com/#dentist",
               "url": "https://www.dentavip.com",
               "telephone": "+21626790175",
               "priceRange": "$$",
