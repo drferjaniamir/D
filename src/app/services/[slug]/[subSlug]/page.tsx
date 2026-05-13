@@ -123,10 +123,11 @@ const SubServicePage = async ({ params }: Props) => {
                 },
                 {
                   "@type": "MedicalProcedure",
+                  "@id": `https://www.dentavip.com/services/${slug}/${subSlug}`,
                   "name": subService.title,
                   "description": subService.description,
-                  "url": `https://www.dentavip.com/services/${subService.slug}`,
-                  "performer": {
+                  "url": `https://www.dentavip.com/services/${slug}/${subSlug}`,
+                  "recognizingAuthority": {
                     "@id": "https://www.dentavip.com/#dentist"
                   }
                 }

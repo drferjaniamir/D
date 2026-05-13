@@ -96,10 +96,11 @@ const ServicePage = async ({ params }: Props) => {
                 },
                 {
                   "@type": "MedicalProcedure",
+                  "@id": `https://www.dentavip.com/services/${service.slug}`,
                   "name": service.title,
                   "description": service.description,
                   "url": `https://www.dentavip.com/services/${service.slug}`,
-                  "performer": {
+                  "recognizingAuthority": {
                     "@id": "https://www.dentavip.com/#dentist"
                   }
                 }
