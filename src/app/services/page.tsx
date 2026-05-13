@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { services } from '@/data/services';
+import { supabase } from '@/lib/supabase';
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import styles from '@/components/sections/Services.module.css';
@@ -25,16 +25,19 @@ export const metadata: Metadata = {
 };
 
 const iconMap: Record<string, React.ReactNode> = {
-  implants: <Syringe size={32} />,
-  generale: <Smile size={32} />,
-  esthetique: <Gem size={32} />,
-  orthodontie: <Activity size={32} />,
-  pediatrique: <Baby size={32} />,
-  urgences: <HeartPulse size={32} />,
-  chirurgie: <Flame size={32} />
+  'implants-dentaires': <Syringe size={32} />,
+  'dentisterie-generale': <Smile size={32} />,
+  'dentisterie-esthetique': <Gem size={32} />,
+  'orthodontie': <Activity size={32} />,
+  'soins-pediatriques': <Baby size={32} />,
+  'urgences-dentaires': <HeartPulse size={32} />,
+  'chirurgie-orale': <Flame size={32} />
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const { data } = await supabase.from('services').select('*').order('order', { ascending: true });
+  const services = data || [];
+
   return (
     <>
       <Header />
@@ -84,7 +87,7 @@ export default function ServicesPage() {
             <div className={styles.grid}>
               {services.map((service) => (
                 <div key={service.id} className={styles.card}>
-                  <div className={styles.icon}>{iconMap[service.id]}</div>
+                  <div className={styles.icon}>{iconMap[service.slug]}</div>
                   <h3 className={styles.serviceTitle}>{service.title}</h3>
                   <p className={styles.serviceDescription}>
                     {service.description}

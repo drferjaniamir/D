@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   title: "Meilleur Dentiste à Ariana | Cabinet Dentaire Dr Ferjani Amir | près de chez vous",
   description: "Votre meilleur dentiste à Ariana. Le Cabinet Dr Ferjani Amir vous propose des soins dentaires personnalisés et modernes. Prenez rendez-vous dès aujourd'hui.",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/logo.webp",
+    apple: "/logo.webp",
   },
   openGraph: {
     title: "Meilleur Dentiste à Ariana | Cabinet Dentaire Dr Ferjani Amir | près de chez vous",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Cabinet Dentaire Dr Ferjani Amir",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.webp",
         width: 1200,
         height: 630,
         alt: "Cabinet Dentaire Dr Ferjani Amir Logo",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meilleur Dentiste à Ariana | Cabinet Dentaire Dr Ferjani Amir | près de chez vous",
     description: "Votre meilleur dentiste à Ariana. Le Cabinet Dr Ferjani Amir vous propose des soins dentaires personnalisés et modernes. Prenez rendez-vous dès aujourd'hui.",
-    images: ["/logo.png"],
+    images: ["/logo.webp"],
   },
 };
 
@@ -54,7 +54,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Dentist",
               "name": "Cabinet dentaire Dr Ferjani Amir",
-              "image": "https://www.dentavip.com/logo.png",
+              "image": "https://www.dentavip.com/logo.webp",
               "@id": "https://www.dentavip.com",
               "url": "https://www.dentavip.com",
               "telephone": "+21626790175",

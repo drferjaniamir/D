@@ -6,5 +6,15 @@
   },
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/*mcp_config.json"
+      ],
+      "schema": {
+        "additionalProperties": true
+      }
+    }
+  ]
 }

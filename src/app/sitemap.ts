@@ -1,16 +1,33 @@
 import { MetadataRoute } from 'next';
-import { services } from '@/data/services';
+import { supabase } from '@/lib/supabase';
 import { areas } from '@/data/areas';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.dentavip.com';
 
-  const serviceUrls = services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  const { data: dbServices } = await supabase
+    .from('services')
+    .select('slug, sub_services(slug)');
+
+  const serviceUrls: MetadataRoute.Sitemap = [];
+  
+  dbServices?.forEach((service) => {
+    serviceUrls.push({
+      url: `${baseUrl}/services/${service.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    });
+    
+    service.sub_services?.forEach((sub: any) => {
+      serviceUrls.push({
+        url: `${baseUrl}/services/${service.slug}/${sub.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      });
+    });
+  });
 
   const areaUrls = areas.map((area) => ({
     url: `${baseUrl}/areas/${area.slug}`,

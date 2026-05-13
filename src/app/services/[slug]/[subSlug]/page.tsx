@@ -2,16 +2,24 @@ import React from 'react';
 import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
-import styles from './ServiceDetail.module.css';
+import { ArrowLeft } from 'lucide-react';
+import styles from '../ServiceDetail.module.css';
 import { Metadata } from 'next';
 import Footer from "@/components/common/Footer";
 
+interface Props {
+  params: Promise<{
+    slug: string;
+    subSlug: string;
+  }>;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, subSlug } = await params;
+  
   const { data: service } = await supabase
     .from('services')
-    .select('seo_title, seo_description, title, description')
+    .select('id')
     .eq('slug', slug)
     .single();
 
@@ -19,19 +27,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Service Dentaire | Cabinet Dr Ferjani Amir' };
   }
 
-  const title = service.seo_title || service.title;
-  const description = service.seo_description || service.description;
+  const { data: subService } = await supabase
+    .from('sub_services')
+    .select('seo_title, seo_description, title, description')
+    .eq('slug', subSlug)
+    .eq('service_id', service.id)
+    .single();
+
+  if (!subService) {
+    return { title: 'Service Dentaire | Cabinet Dr Ferjani Amir' };
+  }
+
+  const title = subService.seo_title || subService.title;
+  const description = subService.seo_description || subService.description;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/services/${slug}`,
+      canonical: `/services/${slug}/${subSlug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://www.dentavip.com/services/${slug}`,
+      url: `https://www.dentavip.com/services/${slug}/${subSlug}`,
       siteName: 'Cabinet Dentaire Dr Ferjani Amir',
       images: [
         {
@@ -47,21 +66,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-interface Props {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
 export async function generateStaticParams() {
-  const { data: services } = await supabase.from('services').select('slug');
-  return (services || []).map((service) => ({
-    slug: service.slug,
-  }));
+  const { data: services } = await supabase
+    .from('services')
+    .select('slug, sub_services(slug)');
+    
+  const params: { slug: string; subSlug: string }[] = [];
+  
+  services?.forEach(service => {
+    service.sub_services?.forEach((sub: any) => {
+      params.push({ slug: service.slug, subSlug: sub.slug });
+    });
+  });
+  
+  return params;
 }
 
-const ServicePage = async ({ params }: Props) => {
-  const { slug } = await params;
+const SubServicePage = async ({ params }: Props) => {
+  const { slug, subSlug } = await params;
   
   const { data: service } = await supabase
     .from('services')
@@ -73,11 +95,16 @@ const ServicePage = async ({ params }: Props) => {
     notFound();
   }
 
-  const { data: subServices } = await supabase
+  const { data: subService } = await supabase
     .from('sub_services')
     .select('*')
     .eq('service_id', service.id)
-    .order('order', { ascending: true });
+    .eq('slug', subSlug)
+    .single();
+
+  if (!subService) {
+    notFound();
+  }
 
   return (
     <>
@@ -96,9 +123,9 @@ const ServicePage = async ({ params }: Props) => {
                 },
                 {
                   "@type": "MedicalProcedure",
-                  "name": service.title,
-                  "description": service.description,
-                  "url": `https://www.dentavip.com/services/${service.slug}`,
+                  "name": subService.title,
+                  "description": subService.description,
+                  "url": `https://www.dentavip.com/services/${subService.slug}`,
                   "provider": {
                     "@id": "https://www.dentavip.com/#dentist"
                   }
@@ -108,30 +135,21 @@ const ServicePage = async ({ params }: Props) => {
           }}
         />
         <div className={styles.container}>
-          <Link href="/services" className={styles.backLink}>
+          <Link href={`/services/${slug}`} className={styles.backLink}>
             <ArrowLeft size={20} />
-            <span>Retour aux services</span>
+            <span>Retour à {service.title}</span>
           </Link>
   
           <header className={styles.header}>
-            <h1 className={styles.title}>{service.title} à Ariana</h1>
-            <p className={styles.description}>{service.description}</p>
+            <h1 className={styles.title}>{subService.title} à Ariana</h1>
+            <p className={styles.description}>{subService.description}</p>
           </header>
   
-          <section className={styles.subServicesSection}>
-            <h2 className={styles.subTitle}>Nos spécialités en {service.title}</h2>
-            <div className={styles.grid}>
-              {(subServices || []).map((sub) => (
-                <Link href={`/services/${slug}/${sub.slug}`} key={sub.id} className={styles.card} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <div className={styles.cardHeader}>
-                    <CheckCircle2 className={styles.checkIcon} size={24} />
-                    <h3 className={styles.cardTitle}>{sub.title}</h3>
-                  </div>
-                  <p className={styles.cardDescription}>{sub.description}</p>
-                </Link>
-              ))}
-            </div>
-          </section>
+          {subService.content && (
+            <section className={styles.subServicesSection} style={{ marginTop: '2rem' }}>
+              <div dangerouslySetInnerHTML={{ __html: subService.content }} />
+            </section>
+          )}
   
           <section className={styles.cta}>
             <div className={styles.ctaContent}>
@@ -149,4 +167,4 @@ const ServicePage = async ({ params }: Props) => {
   );
 };
 
-export default ServicePage;
+export default SubServicePage;

@@ -54,7 +54,7 @@ const Hero = () => {
             {/* Placeholder for dental image, using a gradient for now as a luxury background */}
             <div className={styles.luxuryBg}>
               <img 
-                src="/images/hero-dental.png" 
+                src="/images/hero-dental.webp" 
                 alt="Premium Dental Care" 
                 className={styles.luxuryImage} 
               />

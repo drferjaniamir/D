@@ -14,7 +14,7 @@ import {
   Syringe,
   ArrowLeft
 } from 'lucide-react';
-import { services } from '@/data/services';
+import { supabase } from '@/lib/supabase';
 
 export const metadata: Metadata = {
   title: "Dentiste à Ariana Ville | Cabinet dentaire Dr Ferjani Amir",
@@ -25,16 +25,19 @@ export const metadata: Metadata = {
 };
 
 const iconMap: Record<string, React.ReactNode> = {
-  implants: <Syringe size={32} />,
-  generale: <Smile size={32} />,
-  esthetique: <Gem size={32} />,
-  orthodontie: <Activity size={32} />,
-  pediatrique: <Baby size={32} />,
-  urgences: <HeartPulse size={32} />,
-  chirurgie: <Flame size={32} />
+  'implants-dentaires': <Syringe size={32} />,
+  'dentisterie-generale': <Smile size={32} />,
+  'dentisterie-esthetique': <Gem size={32} />,
+  'orthodontie': <Activity size={32} />,
+  'soins-pediatriques': <Baby size={32} />,
+  'urgences-dentaires': <HeartPulse size={32} />,
+  'chirurgie-orale': <Flame size={32} />
 };
 
-export default function ArianaVillePage() {
+export default async function ArianaVillePage() {
+  const { data } = await supabase.from('services').select('*').order('order', { ascending: true });
+  const services = data || [];
+
   return (
     <>
       <Header />
@@ -58,7 +61,7 @@ export default function ArianaVillePage() {
               <div className={styles.grid}>
                 {services.map((service) => (
                   <div key={service.id} className={styles.card}>
-                    <div className={styles.icon}>{iconMap[service.id]}</div>
+                    <div className={styles.icon}>{iconMap[service.slug]}</div>
                     <h3 className={styles.serviceTitle}>{service.title}</h3>
                     <p className={styles.serviceDescription}>
                       {service.description}

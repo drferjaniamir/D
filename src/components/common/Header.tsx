@@ -16,7 +16,7 @@ const Header = () => {
         <div className={styles.logo}>
           <Link href="/">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Cabinet dentaire Dr Ferjani Amir"
               style={{ height: '44px', width: 'auto', display: 'block' }}
             />
