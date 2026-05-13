@@ -99,7 +99,7 @@ const ServicePage = async ({ params }: Props) => {
                   "name": service.title,
                   "description": service.description,
                   "url": `https://www.dentavip.com/services/${service.slug}`,
-                  "provider": {
+                  "performer": {
                     "@id": "https://www.dentavip.com/#dentist"
                   }
                 }
