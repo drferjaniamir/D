@@ -11,7 +11,7 @@ const Footer = () => {
           <div className={styles.brand}>
             <div className={styles.logo}>
               <img
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Cabinet dentaire Dr Ferjani Amir"
                 style={{ height: '36px', width: 'auto', display: 'block' }}
               />
