@@ -7,6 +7,10 @@ import styles from '../ServiceDetail.module.css';
 import { Metadata } from 'next';
 import Footer from "@/components/common/Footer";
 
+import { getInternalLinks, applyInternalLinks } from '@/lib/linkContent';
+
+export const revalidate = 60;
+
 interface Props {
   params: Promise<{
     slug: string;
@@ -85,6 +89,9 @@ export async function generateStaticParams() {
 const SubServicePage = async ({ params }: Props) => {
   const { slug, subSlug } = await params;
   
+  // Fetch keywords for auto-linking
+  const internalLinks = await getInternalLinks();
+  
   const { data: service } = await supabase
     .from('services')
     .select('*')
@@ -105,6 +112,10 @@ const SubServicePage = async ({ params }: Props) => {
   if (!subService) {
     notFound();
   }
+
+  const linkedContent = subService.content 
+    ? applyInternalLinks(subService.content, internalLinks, subSlug) 
+    : null;
 
   return (
     <>
@@ -146,9 +157,9 @@ const SubServicePage = async ({ params }: Props) => {
             <p className={styles.description}>{subService.description}</p>
           </header>
   
-          {subService.content && (
+          {linkedContent && (
             <section className={styles.subServicesSection} style={{ marginTop: '2rem' }}>
-              <div dangerouslySetInnerHTML={{ __html: subService.content }} />
+              <div className={styles.richContent} dangerouslySetInnerHTML={{ __html: linkedContent }} />
             </section>
           )}
   

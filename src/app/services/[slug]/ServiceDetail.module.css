@@ -32,8 +32,23 @@
   font-size: 3.5rem;
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   letter-spacing: -0.02em;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: #0ea5e9;
+  border-radius: 2.5px;
 }
 
 .description {
@@ -92,6 +107,87 @@
 .cardDescription {
   color: #64748b;
   line-height: 1.5;
+}
+
+.richContent {
+  color: #475569;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+}
+
+.richContent h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 3.5rem 0 1.5rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-bottom: 0.75rem;
+  text-align: center;
+}
+
+.richContent h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #0ea5e9;
+  border-radius: 2px;
+}
+
+.richContent h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 2.5rem 0 1rem;
+  text-align: center;
+}
+
+.richContent p {
+  margin-bottom: 1.5rem;
+}
+
+.richContent ul {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.richContent li {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.richContent li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0ea5e9;
+  font-weight: bold;
+}
+
+.richContent strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.richContent a {
+  color: #0ea5e9;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+  transition: all 0.2s ease;
+}
+
+.richContent a:hover {
+  color: #0284c7;
+  border-bottom-color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.05);
 }
 
 .cta {

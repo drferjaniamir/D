@@ -7,6 +7,8 @@ import styles from './ServiceDetail.module.css';
 import { Metadata } from 'next';
 import Footer from "@/components/common/Footer";
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const { data: service } = await supabase
