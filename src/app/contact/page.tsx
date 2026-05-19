@@ -86,7 +86,7 @@ export default function ContactPage() {
                   Appelez-nous directement pour les urgences ou les demandes spécifiques.
                 </p>
                 <a href="tel:+21626790175" className={styles.link}>
-                  +216 26 790 175 →
+                  26 790 175 →
                 </a>
               </div>
 
