@@ -5,6 +5,8 @@ import Footer from "@/components/common/Footer";
 import styles from '@/components/sections/Services.module.css';
 import Link from 'next/link';
 import { ArrowLeft, Sparkles } from 'lucide-react';
+import { supabase } from "@/lib/supabase";
+import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
 
 export const metadata: Metadata = {
   title: "Transformation & Galerie | Cabinet dentaire Dr Ferjani Amir",
@@ -14,7 +16,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TransformationPage() {
+export default async function TransformationPage() {
+  const { data: cases, error } = await supabase
+    .from('gallery_cases')
+    .select('*')
+    .order('order', { ascending: true });
+
+  const hasCases = cases && cases.length > 0;
+
   return (
     <>
       <Header />
@@ -47,16 +56,35 @@ export default function TransformationPage() {
                 Découvrez les résultats exceptionnels de nos traitements et comment nous redéfinissons les sourires de nos patients.
               </p>
               
-              <div style={{ 
-                padding: '100px 40px', 
-                background: 'var(--accent)', 
-                borderRadius: '30px', 
-                border: '1px solid var(--border)',
-                marginTop: '60px'
-              }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--secondary)' }}>Contenu de la galerie à venir</h3>
-                <p style={{ color: 'var(--muted-foreground)', marginTop: '16px' }}>Nous préparons une sélection de nos plus belles transformations pour vous inspirer.</p>
-              </div>
+              {hasCases ? (
+                <div style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+                  gap: '40px', 
+                  marginTop: '60px' 
+                }}>
+                  {cases.map((c) => (
+                    <BeforeAfterSlider
+                      key={c.id}
+                      beforeImage={c.before_image_url}
+                      afterImage={c.after_image_url}
+                      title={c.title}
+                      description={c.description}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div style={{ 
+                  padding: '100px 40px', 
+                  background: 'var(--accent)', 
+                  borderRadius: '30px', 
+                  border: '1px solid var(--border)',
+                  marginTop: '60px'
+                }}>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--secondary)' }}>Contenu de la galerie à venir</h3>
+                  <p style={{ color: 'var(--muted-foreground)', marginTop: '16px' }}>Nous préparons une sélection de nos plus belles transformations pour vous inspirer.</p>
+                </div>
+              )}
             </div>
           </div>
         </section>

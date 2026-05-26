@@ -9,7 +9,7 @@ import Map from "@/components/sections/Map";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "/",
+    canonical: "https://www.dentavip.com",
   },
 };
 
