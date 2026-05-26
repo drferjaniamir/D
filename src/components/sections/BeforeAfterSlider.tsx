@@ -126,8 +126,8 @@ export default function BeforeAfterSlider({
 
       {/* Case Details */}
       <div className={styles.caseInfo}>
-        <h4 className={styles.title}>{title}</h4>
-        {description && <p className={styles.description}>{description}</p>}
+        <h4 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+        {description && <p className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />}
       </div>
     </div>
   );

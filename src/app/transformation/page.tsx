@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import { supabase } from "@/lib/supabase";
 import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
+import { getInternalLinks, applyInternalLinks } from "@/lib/linkContent";
 
 export const metadata: Metadata = {
   title: "Transformation & Galerie | Cabinet dentaire Dr Ferjani Amir",
@@ -17,11 +18,15 @@ export const metadata: Metadata = {
 };
 
 export default async function TransformationPage() {
-  const { data: cases, error } = await supabase
-    .from('gallery_cases')
-    .select('*')
-    .order('order', { ascending: true });
+  const [casesResult, internalLinks] = await Promise.all([
+    supabase
+      .from('gallery_cases')
+      .select('*')
+      .order('order', { ascending: true }),
+    getInternalLinks()
+  ]);
 
+  const cases = casesResult.data;
   const hasCases = cases && cases.length > 0;
 
   return (
@@ -63,15 +68,19 @@ export default async function TransformationPage() {
                   gap: '40px', 
                   marginTop: '60px' 
                 }}>
-                  {cases.map((c) => (
-                    <BeforeAfterSlider
-                      key={c.id}
-                      beforeImage={c.before_image_url}
-                      afterImage={c.after_image_url}
-                      title={c.title}
-                      description={c.description}
-                    />
-                  ))}
+                  {cases.map((c) => {
+                    const processedTitle = applyInternalLinks(c.title || '', internalLinks, 'transformation');
+                    const processedDescription = applyInternalLinks(c.description || '', internalLinks, 'transformation');
+                    return (
+                      <BeforeAfterSlider
+                        key={c.id}
+                        beforeImage={c.before_image_url}
+                        afterImage={c.after_image_url}
+                        title={processedTitle}
+                        description={processedDescription}
+                      />
+                    );
+                  })}
                 </div>
               ) : (
                 <div style={{ 
