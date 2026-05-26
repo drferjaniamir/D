@@ -134,3 +134,18 @@ button {
   background-color: var(--accent);
   color: var(--primary);
 }
+
+/* Styling for automatic internal keywords links */
+.internal-link {
+  color: var(--primary) !important;      /* Vibrant clinical sky blue */
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.internal-link:hover {
+  color: var(--primary-hover) !important;
+  text-decoration-style: double;
+}

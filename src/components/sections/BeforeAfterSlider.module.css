@@ -124,3 +124,38 @@
   color: var(--muted-foreground);
   line-height: 1.5;
 }
+
+/* Premium Slider Micro-Animations */
+.handleSvg {
+  display: block;
+  overflow: visible;
+}
+
+.arrowLeft {
+  animation: breatheLeft 2.4s infinite ease-in-out;
+  will-change: transform;
+}
+
+.arrowRight {
+  animation: breatheRight 2.4s infinite ease-in-out;
+  will-change: transform;
+}
+
+@keyframes breatheLeft {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes breatheRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+

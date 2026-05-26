@@ -116,9 +116,10 @@ export default function BeforeAfterSlider({
               strokeWidth="2.5" 
               strokeLinecap="round" 
               strokeLinejoin="round"
+              className={styles.handleSvg}
             >
-              <path d="m9 18-6-6 6-6" />
-              <path d="m15 6 6 6-6 6" />
+              <path d="m9 18-6-6 6-6" className={styles.arrowLeft} />
+              <path d="m15 6 6 6-6 6" className={styles.arrowRight} />
             </svg>
           </div>
         </div>

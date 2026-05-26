@@ -50,6 +50,6 @@ USING (true);
 ---
 
 ## 3. Verification & Testing
-- [ ] **Step 3.1**: Visit the `/transformation` page.
-- [ ] **Step 3.2**: Check if the "Implants Dentaires" case title has turned into a styled, clickable link pointing to `/services/implants-dentaires`.
-- [ ] **Step 3.3**: Run `npm run build` to ensure there are no build or TypeScript errors.
+- [x] **Step 3.1**: Visit the `/transformation` page.
+- [x] **Step 3.2**: Check if the "Implants Dentaires" case title has turned into a styled, clickable link pointing to `/services/implants-dentaires`.
+- [x] **Step 3.3**: Run `npm run build` to ensure there are no build or TypeScript errors.
