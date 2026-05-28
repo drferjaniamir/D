@@ -6,7 +6,6 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import styles from './ServiceDetail.module.css';
 import { Metadata } from 'next';
 import Footer from "@/components/common/Footer";
-import { getInternalLinks, applyInternalLinks } from '@/lib/linkContent';
 
 export const revalidate = 60;
 
@@ -66,9 +65,6 @@ export async function generateStaticParams() {
 const ServicePage = async ({ params }: Props) => {
   const { slug } = await params;
   
-  // Fetch keywords for auto-linking
-  const internalLinks = await getInternalLinks();
-  
   const { data: service } = await supabase
     .from('services')
     .select('*')
@@ -84,10 +80,6 @@ const ServicePage = async ({ params }: Props) => {
     .select('*')
     .eq('service_id', service.id)
     .order('order', { ascending: true });
-
-  const linkedContent = service.content 
-    ? applyInternalLinks(service.content, internalLinks, slug) 
-    : null;
 
   return (
     <>
@@ -143,12 +135,6 @@ const ServicePage = async ({ params }: Props) => {
               ))}
             </div>
           </section>
-  
-          {linkedContent && (
-            <section className={styles.subServicesSection} style={{ marginTop: '2rem', marginBottom: '4rem' }}>
-              <div className={styles.richContent} dangerouslySetInnerHTML={{ __html: linkedContent }} />
-            </section>
-          )}
   
           <section className={styles.cta}>
             <div className={styles.ctaContent}>
