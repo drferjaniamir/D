@@ -31,7 +31,7 @@ const Header = () => {
           <div className={styles.mobilePhone}>
             <a href="tel:+21626790175">
               <Phone size={18} />
-              <span>26 790 175</span>
+              <span>+216 26 790 175</span>
             </a>
           </div>
         </nav>
@@ -39,7 +39,7 @@ const Header = () => {
         <div className={styles.cta}>
           <a href="tel:+21626790175" className={styles.phone}>
             <Phone size={18} />
-            <span>26 790 175</span>
+            <span>+216 26 790 175</span>
           </a>
           <button className={styles.mobileMenuToggle} onClick={toggleMenu} aria-label="Toggle Menu">
             {isMenuOpen ? <X /> : <Menu />}

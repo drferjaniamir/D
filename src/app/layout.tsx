@@ -58,6 +58,7 @@ export default function RootLayout({
               "image": "https://www.dentavip.com/logo.webp",
               "@id": "https://www.dentavip.com/#dentist",
               "url": "https://www.dentavip.com",
+              "sameAs": ["https://www.linkedin.com/company/cabinet-dentaire-dr-ferjani-amir"],
               "telephone": "+21626790175",
               "priceRange": "$$",
               "address": {
