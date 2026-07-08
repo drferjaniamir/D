@@ -60,7 +60,7 @@ const Footer = () => {
         <div className={styles.bottom}>
           <div className={styles.info}>
             <span>Cabinet dentaire Dr Ferjani Amir</span>
-            <span><MapPin size={16} /> 14 Rue Hamza Ibn Abdelmotaleb, Ariana 2083, Tunisie</span>
+            <span><MapPin size={16} /> 14 Rue Hamza Ibn abdelmotaleb, Ariana 2083, Tunisie</span>
             <span><Phone size={16} /> +216 26 790 175</span>
           </div>
           <div className={styles.copyright}>

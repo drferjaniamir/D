@@ -1,18 +1,18 @@
 # Address Update Checklist
 
 **Goal:** Update the physical address of the clinic across the entire application to: 
-`14 Rue Hamza Ibn Abdelmotaleb, Ariana 2083, Tunisie`
+`14 Rue Hamza Ibn abdelmotaleb, Ariana 2083, Tunisie`
 
 ## Files to Update
 
 - [ ] `src/components/common/Footer.tsx`
   - Update the displayed address string inside the footer contact section.
   - Current: `14 hamza ibn abdelmotaleb, Ariana Essoghra 2083`
-  - New: `14 Rue Hamza Ibn Abdelmotaleb, Ariana 2083, Tunisie`
+  - New: `14 Rue Hamza Ibn abdelmotaleb, Ariana 2083, Tunisie`
 
 - [ ] `src/app/layout.tsx`
   - Update the JSON-LD structured data for local SEO.
-  - Update `streetAddress` to `"14 Rue Hamza Ibn Abdelmotaleb"`
+  - Update `streetAddress` to `"14 Rue Hamza Ibn abdelmotaleb"`
   - Update `addressLocality` to `"Ariana"`
   - Ensure `postalCode` remains `"2083"`
 

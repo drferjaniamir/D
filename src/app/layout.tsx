@@ -63,7 +63,7 @@ export default function RootLayout({
               "priceRange": "$$",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "14 Rue Hamza Ibn Abdelmotaleb",
+                "streetAddress": "14 Rue Hamza Ibn abdelmotaleb",
                 "addressLocality": "Ariana",
                 "postalCode": "2083",
                 "addressCountry": "TN"
