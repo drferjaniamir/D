@@ -20,8 +20,8 @@ const Footer = () => {
               Redéfinir les soins dentaires grâce à la technologie et à des expériences patient personnalisées. Dévoués à votre sourire depuis 2012.
             </p>
             <div className={styles.socials}>
-              <a href="#"><Instagram size={20} /></a>
-              <a href="#"><Facebook size={20} /></a>
+              <a href="https://www.instagram.com/cabinet.dr.ferjani.amir" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
+              <a href="https://www.facebook.com/cabinetdentairedr.ferjaniamir" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
               <a href="#"><Twitter size={20} /></a>
               <a href="https://www.linkedin.com/company/cabinet-dentaire-dr-ferjani-amir" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
               <a href="https://www.pinterest.com/drferjaniamir/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">

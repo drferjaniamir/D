@@ -59,6 +59,8 @@ export default function RootLayout({
               "@id": "https://www.dentavip.com/#dentist",
               "url": "https://www.dentavip.com",
               "sameAs": [
+                "https://www.facebook.com/cabinetdentairedr.ferjaniamir",
+                "https://www.instagram.com/cabinet.dr.ferjani.amir",
                 "https://www.linkedin.com/company/cabinet-dentaire-dr-ferjani-amir",
                 "https://www.pinterest.com/drferjaniamir/"
               ],
