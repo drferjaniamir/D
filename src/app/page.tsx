@@ -57,6 +57,31 @@ export default async function Home() {
         <Testimonials initialData={reviewsData} />
         <CTA />
         <Map />
+        <div
+          style={{
+            textAlign: "center",
+            padding: "16px 20px",
+            fontSize: "0.8125rem",
+            color: "var(--muted-foreground, #64748b)",
+            backgroundColor: "var(--background, #ffffff)",
+            position: "relative",
+            zIndex: 20,
+          }}
+        >
+          Web design and SEO by{" "}
+          <a
+            href="https://www.premium-results.com/"
+            target="_blank"
+            rel="noopener"
+            style={{
+              color: "inherit",
+              textDecoration: "underline",
+              textUnderlineOffset: "3px",
+            }}
+          >
+            Premium-Results
+          </a>
+        </div>
       </main>
       <Footer />
     </>
